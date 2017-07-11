@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio - FREE Community Edition 7.0.2.746 (http://www.liquid-technologies.com) -->
+<Patch>
+	<!-- ==============================================================
+		 Support for mining resources from Cupro's Alloys mod
+	
+		    Material | Silver | defName       | Ore
+			=================================================
+		   	Copper	 | 1.5    | EXP_Copper    | Copper Ore
+		   	Tin		 | 0.7    | EXP_Tin       | Cassiterite
+			Lead	 | 1.2    | EXP_Lead      | Galena
+			Aluminum | 0.9    | CAL_Aluminum  | Bauxite
+	-->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<!-- find the required Mines mod XML document to work in -->
+				<xpath>*/RecipeDef[@Name="MiningWork"]</xpath>
+			</li>
+			<!-- 
+				Copper
+			-->
+			<li Class="PatchOperationInsert">
+				<xpath>*/RecipeDef[@Name="MiningWork"]</xpath>
+				<value>
+					<RecipeDef ParentName="MiningWork">
+						<defName>ExcavateCopper</defName>
+						<label>mining copper ore</label>
+						<description>mining copper ore.</description>
+						<jobString>Mining copper ore.</jobString>
+						<!-- 
+							A unit of copper is worth 1.5 silver
+							1.5 silver x 332 ticks/silver =~ 500 ticks
+						-->
+						<workAmount>500</workAmount>
+						<products>
+							<EXP_Copper>1</EXP_Copper>
+						</products>
+					</RecipeDef>
+				</value>
+			</li>
+			<!-- 
+				Tin
+			-->
+			<li Class="PatchOperationInsert">
+				<xpath>*/RecipeDef[@Name="MiningWork"]</xpath>
+				<value>
+					<RecipeDef ParentName="MiningWork">
+						<defName>ExcavateTin</defName>
+						<label>mining cassiterite (tin)</label>
+						<description>mining cassiterite (tin).</description>
+						<jobString>Mining cassiterite (tin).</jobString>
+						<!-- 
+							A unit of tin is worth 0.7 silver
+							0.7 silver x 332 ticks/silver = 232 ticks
+						-->
+						<workAmount>232</workAmount>
+						<products>
+							<EXP_Tin>1</EXP_Tin>
+						</products>
+					</RecipeDef>
+				</value>
+			</li>
+			<!-- 
+				Lead
+			-->
+			<li Class="PatchOperationInsert">
+				<xpath>*/RecipeDef[@Name="MiningWork"]</xpath>
+				<value>
+					<RecipeDef ParentName="MiningWork">
+						<defName>ExcavateLead</defName>
+						<label>mining galena (lead)</label>
+						<description>mining galena (lead).</description>
+						<jobString>Mining galena (lead).</jobString>
+						<!-- 
+							A unit of lead is worth 1.2 silver
+							1.2 silver x 332 ticks/silver =~ 400 ticks
+						-->
+						<workAmount>400</workAmount>
+						<products>
+							<EXP_Lead>1</EXP_Lead>
+						</products>
+					</RecipeDef>
+				</value>
+			</li>
+			<!-- 
+				Aluminum
+			-->
+			<li Class="PatchOperationInsert">
+				<xpath>*/RecipeDef[@Name="MiningWork"]</xpath>
+				<value>
+					<RecipeDef ParentName="MiningWork">
+						<defName>ExcavateAluminum</defName>
+						<label>mining bauxite (aluminum)</label>
+						<description>mining bauxite (aluminum).</description>
+						<jobString>Mining bauxite (aluminum).</jobString>
+						<!-- 
+							A unit of aluminum is worth 0.9 silver
+							0.9 silver x 332 ticks/silver =~ 300 ticks
+						-->
+						<workAmount>300</workAmount>
+						<products>
+							<CAL_Aluminum>1</CAL_Aluminum>
+						</products>
+					</RecipeDef>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	<!-- ===============================================================================================
+         Update mine to include new work bills
+    -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[DefName="Mineshaft"]</xpath>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[DefName="Mineshaft"]/recipes</xpath>
+				<value>
+					<li>ExcavateCopper</li>
+					<li>ExcavateTin</li>
+					<li>ExcavateLead</li>
+					<li>ExcavateAluminum</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

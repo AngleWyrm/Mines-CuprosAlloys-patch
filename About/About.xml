@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+    <name>Mines - Cupro's alloys patch</name>
+    <author>AngleWyrm</author>
+    <url/>
+    <targetVersion>0.17.0</targetVersion>
+    <description>Adds to the Mines mod the ability to excavate base materials from Cupro's Alloys mod.
+
+	* Copper ore	-  Copper		1.5 silver	1/5  hr (500 ticks)
+	* Cassiterite	-  Tin		0.7 silver	1/11 hr (232 ticks)
+	* Galena		-  Lead		1.2 silver	1/6  hr (400 ticks)
+	* Bauxite		-  Aluminum	0.9 silver	1/8  hr (300 ticks)
+    </description>
+</ModMetaData>
